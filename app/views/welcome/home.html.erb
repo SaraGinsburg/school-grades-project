@@ -1,10 +1,11 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" >Home</a>
-      <a class="navbar-brand" href="/users/new">Sign Up</a>
-      <a class="navbar-brand" href="/signin">Log In</a>
-      <a class="navbar-brand" href="/logout">Log Out</a>
+      <a <%= link_to 'Home', root_path %></a>
+      <a <%= link_to 'Sign Up', new_user_path %></a>
+      <a <%= link_to 'Log In', signin_path %></a>
+      <a <%= link_to 'Log Out', signout_path, method: :delete %></a>
+
    </div>
    <div class="navbar-collapse collapse">
      <ul class="nav navbar-nav">
@@ -14,6 +15,7 @@
 </div>
 
 
-<img style="width: 1100px"
-     src="https://www.wikihow.com/images/thumb/f/f4/Get-Good-Grades-in-Middle-School-Step-2-Version-2.jpg/aid582457-v4-728px-Get-Good-Grades-in-Middle-School-Step-2-Version-2.jpg">
-<h1 align="center">Welcome to the School Grades App!</h1>
+<img style="width: 700px"
+     src="http://4.bp.blogspot.com/-rgxWuymwelU/VBR3b229MQI/AAAAAAAAIbE/4soFAtrT5mc/s1600/gradebook.png">
+
+<h1 align="left">Welcome to the School Grades App!</h1>

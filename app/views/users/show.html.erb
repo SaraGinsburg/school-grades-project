@@ -14,7 +14,8 @@
     <% end %>
     <p><strong>Name:</strong> <%= @user.name %></p>
 
+    <p><%= link_to 'Add a new assignment', new_user_assignment_path(@user)%></p><br><br><br>
+    <p><%= link_to "See all user's assignments", user_assignments_path(@user) %></p><br><br><br>
     <p><%= link_to 'Edit', edit_user_path(@user) %></p>
-    <p><%= link_to 'See all assignments', works_index_path %></p>
   </div>
 </div>

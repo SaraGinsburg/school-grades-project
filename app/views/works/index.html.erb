@@ -14,10 +14,10 @@
       <td><strong>Type</strong></td>
       <td><strong>Notes</strong></td>
     </tr>
-    <% @works.each do |work| %>
+    <% @assignments.each do |assignment| %>
       <tr>
         <% if current_user.admin %>
-          <td><%= link_to "Show #{work.name}", attraction_path(attraction) %></td>
+          <td><%= link_to "Show #{assignment.name}", attraction_path(attraction) %></td>
         <% else %>
           <td><%= link_to "Go on #{attraction.name}", attraction_path(attraction) %></td>
         <% end %>

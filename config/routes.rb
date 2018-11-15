@@ -3,11 +3,15 @@ Rails.application.routes.draw do
   root "welcome#home"
   get "/signin", to: "sessions#new"
   post "/sessions/create", to: "sessions#create"
-  post "/signout", to: "sessions#destroy"
-  get "/works/index", to: "works#index"
-  post "/works/new", to: "works#new"
+  delete "/signout", to: "sessions#destroy"
+  
 
-  resources :subjects
-  resources :users
+  resources :subjects do
+    resources :assignments
+  end
+
+  resources :users do
+    resources :assignments
+  end
 
 end

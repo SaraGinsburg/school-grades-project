@@ -17,6 +17,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: 'User was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   def show
   end
 
@@ -26,6 +37,6 @@ class UsersController < ApplicationController
   end
 
   def find_user
-      @user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 end

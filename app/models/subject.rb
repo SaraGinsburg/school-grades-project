@@ -1,4 +1,4 @@
 class Subject < ApplicationRecord
-  has_many :works
-  has_many :users, through: :works
+  has_many :assignments
+  has_many :users, through: :assignments
 end

@@ -1,0 +1,11 @@
+<%= form_for(@user, url: sessions_create_path) do |f| %>
+
+  <%= f.label :name, "Select your name"%><br>
+  <%= f.collection_select(:name, @users,  :name, :name) %><br><br>
+
+  <%= f.label :password, "Enter your password"%><br>
+  <%= f.password_field :password %><br><br>
+
+  <%= f.submit "Sign In"%>  Or 
+  <%= link_to(controller: 'users', action: 'new') {'sign up'} %>
+<% end %>

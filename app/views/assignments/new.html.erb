@@ -1,0 +1,19 @@
+<h1>Add a new assignment</h1>
+
+<%= form_for @assignment, url: user_assignments_path(@user) do |f|  %>
+    <% if @user.admin %>
+      <%= f.label :subject_id, "Select Course"%>
+      <%= f.collection_select(  :subject_id,  Subject.all,  :id, :name) %><br><br><br>
+    <% end %>
+    <%= f.label :assignment_type, "Select Assignment Type"%><br><br>
+    <%= f.radio_button(:assignment_type,  "HW") %>HW<br><br>
+    <%= f.radio_button(:assignment_type,  "Project") %>Project<br><br>
+    <%= f.radio_button(:assignment_type,  "Test") %>Test<br><br>
+    <%= f.radio_button(:assignment_type,  "Quiz") %>Quiz<br><br>
+
+    Assignment Details <%= f.text_field :name %></br></br>
+    Assignment Notes <%= f.text_field :notes %></br></br>
+
+
+    <%= f.submit "Create Assignment"%>
+<% end %>

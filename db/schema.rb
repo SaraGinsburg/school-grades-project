@@ -10,13 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_13_133051) do
+ActiveRecord::Schema.define(version: 2018_11_15_180849) do
+
+  create_table "assignments", force: :cascade do |t|
+    t.integer "subject_id"
+    t.integer "user_id"
+    t.string "assignment_type"
+    t.string "name"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "subjects", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "hw_weight"
+    t.integer "quiz_weight"
+    t.integer "test_weight"
+    t.integer "project_weight"
   end
 
   create_table "users", force: :cascade do |t|
