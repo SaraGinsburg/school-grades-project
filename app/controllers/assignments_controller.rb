@@ -36,6 +36,7 @@ class AssignmentsController < ApplicationController
       :user_id,
       :assignment_type,
       :name,
+      :grade,
       :notes
     )
   end
