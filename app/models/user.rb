@@ -4,7 +4,8 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :password, presence: true
 
-  has_many :assignments
-  has_many :subjects, through: :assignments
+  has_many :subjects
+  has_many :assignments, through: :subjects
+  has_many :students, through: :subjects
 
 end

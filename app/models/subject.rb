@@ -1,7 +1,7 @@
 class Subject < ApplicationRecord
-  has_many :assignments
-  has_many :users, through: :assignments
+  belongs_to :user
 
+  has_many :assignments
   has_many :students
-  belongs_to :student
+  
 end
