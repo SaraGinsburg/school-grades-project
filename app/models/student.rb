@@ -4,9 +4,9 @@ class Student < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :password, presence: true
 
-  has_many :assignments
-  has_many :subjects, through: :assignments
-  has_many :users, through: :assignments
+  has_many :subjects
+  has_many :assignments, through: :subjects
+  has_many :users, through: :subjects
 
   belongs_to: subject
 end
