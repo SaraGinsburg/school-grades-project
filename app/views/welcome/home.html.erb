@@ -3,7 +3,7 @@
     <div class="navbar-header">
       <a <%= link_to 'Home', root_path %></a>
       <a <%= link_to 'Sign Up', new_user_path %></a>
-      <a <%= link_to 'Log In', signin_path %></a>
+      <a <%= link_to 'Log in with Google', '/auth/google_oauth2' %></a>
       <a <%= link_to 'Log Out', signout_path, method: :delete %></a>
 
    </div>
