@@ -2,9 +2,9 @@
 
 <%= form_for @assignment, url: new_subject_assignment_path(@user) do |f|  %>
 
+
       <%= f.label :subject_id, "Select Course"%>
-      <%= f.collection_select( @subject, :subject_id,  Subject.all.where(user_id: @user.id),  :id, :name) %><br><br><br>
-    <% binding.pry %>
+      <%= f.collection_select(:subject_id,  Subject.all.where(user_id: @user.id),  :id, :name) %><br><br><br>
     <%= f.label :assignment_type, "Select Assignment Type"%><br><br>
     <%= f.radio_button(:assignment_type,  "HW") %>HW<br><br>
     <%= f.radio_button(:assignment_type,  "Project") %>Project<br><br>

@@ -8,8 +8,7 @@ class AssignmentsController < ApplicationController
 
   def new
     @assignment = Assignment.new(
-      user_id: session[:user_id],
-      subject_id: params[:subject_id]
+      user_id: session[:user_id]
     )
   end
 
