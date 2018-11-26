@@ -14,9 +14,23 @@
   <% end %>
 
     <div class="form-group">
-      <%= f.label :name %>
+      <%= f.label :first_name %>
       <br>
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :first_name, class: "form-control" %>
+    </div>
+    <br>
+
+    <div class="form-group">
+      <%= f.label :last_name %>
+      <br>
+      <%= f.text_field :last_name, class: "form-control" %>
+    </div>
+    <br>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <br>
+      <%= f.text_field :email, class: "form-control" %>
     </div>
     <br>
 
@@ -28,7 +42,7 @@
   <br>
 
   <div class="form-group">
-    <%= f.label :admin, "Check box if you are a teacher" %>
+    <%= f.label :admin, "Check box if you are an Administrator" %>
     <%= f.check_box :admin, class: "form-check-input" %>
   </div>
   <br>

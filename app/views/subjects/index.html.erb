@@ -1,0 +1,6 @@
+<h1>All Subjects taugt by: <%= @user.name %></h1>
+<% @subjects.each do |subject| %>
+  <p>Course: <%= subject.name %></p>
+  <p>Description: <%= subject.description %></p>
+  <p>Taught by: <%= subject.user_id %></p><br>
+<% end %>

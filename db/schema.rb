@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_21_200805) do
+ActiveRecord::Schema.define(version: 2018_11_25_192502) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "subject_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2018_11_21_200805) do
     t.integer "quiz_weight"
     t.integer "test_weight"
     t.integer "project_weight"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

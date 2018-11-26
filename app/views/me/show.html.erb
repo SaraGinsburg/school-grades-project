@@ -3,9 +3,19 @@
   <% if session[:user_id] %>
     <% @user = User.find(session[:user_id])%>
     <h1><%= @user.name %></h1>
+    <% if @user.admin %>
+      <h2>Administrator</h2>
+    <% end %>
     <h2><%= @user.email %></h2>
 
     <img src="<%= @user.image %>"
   <% else %>
     <%= link_to('Log in with Google', '/auth/google_oauth2')%>
   <% end %>
+
+<br>
+  <h3>What would you like to do?</h3><br>
+
+  <%= link_to('See lists of all subjects taught by you', user_subjects_path(@user))  %><br>
+  <%= link_to('See students enrolled in your classes', subject_students_path(@user, @subjects))  %><br><br>
+  <%= link_to('Add Assignments', new_subject_assignment_path(@user, @subject))  %>

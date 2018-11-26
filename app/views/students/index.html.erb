@@ -1,0 +1,13 @@
+<h2>Courses and Students </h2>
+<h2>by: <%= @user.name %></h2>
+
+<% @subjects.each do |subject| %>
+  <h3><%= subject.name %></h3>
+  <% subject.students.each do |student| %>
+  <ul >
+    <li >
+      <%= student.name %>
+    </li>
+  </ul>
+  <% end %>
+<% end %>

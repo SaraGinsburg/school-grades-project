@@ -1,8 +1,8 @@
 Specifications for the Rails Assessment
 Specs:
 
- □  Using Ruby on Rails for the project
- □  Include at least one has_many relationship (x has_many y; e.g. User has_many Recipes)
+ ✔︎ Using Ruby on Rails for the project
+ ✔︎  Include at least one has_many relationship (x has_many y; e.g. User has_many Recipes)
  □  Include at least one belongs_to relationship (x belongs_to y; e.g. Post belongs_to User)
  □  Include at least two has_many through relationships (x has_many y through z; e.g. Recipe has_many Items through Ingredients)
  □  Include at least one many-to-many relationship (x has_many y through z, y has_many x through z; e.g. Recipe has_many Items through Ingredients, Item has_many Recipes through Ingredients)

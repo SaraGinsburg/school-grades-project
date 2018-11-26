@@ -9,9 +9,12 @@ class UsersController < ApplicationController
   end
 
   def create
+    
     @user = User.new(user_params)
+    @user.update(name: @user.first_name + " " + @user.last_name)
     if @user.save
-      redirect_to user_path(@user), notice: "Successfully created new user"
+      session[:user_id] = @user.id
+      redirect_to user_path, notice: "Successfully created new user"
     else
       render 'new'
     end
@@ -22,6 +25,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+
       redirect_to user_path(@user), notice: 'User was successfully updated.'
     else
       render :edit
@@ -33,8 +37,10 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :admin, :password)
+    params.require(:user).permit(:first_name, :last_name, :email, :admin, :password)
   end
+
+
 
   def find_user
     @user = User.find(params[:id])
