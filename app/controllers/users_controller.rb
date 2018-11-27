@@ -9,12 +9,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    
+
     @user = User.new(user_params)
     @user.update(name: @user.first_name + " " + @user.last_name)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path, notice: "Successfully created new user"
+      redirect_to me_path, notice: "Successfully created new user"
     else
       render 'new'
     end

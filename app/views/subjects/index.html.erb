@@ -2,5 +2,6 @@
 <% @subjects.each do |subject| %>
   <p>Course: <%= subject.name %></p>
   <p>Description: <%= subject.description %></p>
-  <p>Taught by: <%= subject.user_id %></p><br>
+  <%= link_to('Add Assignment', new_subject_assignment_path(subject))  %><br><br>
+
 <% end %>

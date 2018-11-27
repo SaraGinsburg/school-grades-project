@@ -7,17 +7,18 @@ class AssignmentsController < ApplicationController
   end
 
   def new
-    @assignment = Assignment.new(
-      user_id: session[:user_id]
-    )
+    @assignment = Assignment.new
   end
 
   def create
+
     @user = User.find(session[:user_id])
     @assignment = Assignment.new(assignment_params)
     @assignment.user_id = session[:user_id]
+    @assignment.subject_id = params[:subject_id]
+    
     if @assignment.save
-      redirect_to user_assignment_path(@user, @assignment), notice: "Assignment added."
+      redirect_to user_subject_path(@user, @assignment.subject), notice: "Assignment added."
     else
       render :new
     end
