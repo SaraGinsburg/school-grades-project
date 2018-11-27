@@ -16,11 +16,11 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.new(assignment_params)
     @assignment.user_id = session[:user_id]
     @assignment.subject_id = params[:subject_id]
-    
+
     if @assignment.save
       redirect_to user_subject_path(@user, @assignment.subject), notice: "Assignment added."
     else
-      render :new
+      redirect_to  new_subject_assignment_path
     end
   end
 

@@ -1,4 +1,10 @@
 <p><strong><%= @subject.name %></strong></p><br>
 <%= @subject.description %><br>
 
+<% @subject.assignments.order(:assignment_type).each do |assignment|%>
+  <%= assignment.assignment_type %>        <%= assignment.created_at.strftime("%m/%d/%Y") %><br>
+  <%= assignment.name %><br>
+  <%= assignment.notes%><br><br>
+<% end %>
+
 <%= link_to 'Back', root_path %>

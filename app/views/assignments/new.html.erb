@@ -1,6 +1,9 @@
-<h1>Add a new assignment</h1>
 
   <% @subject = Subject.find(params[:subject_id])%>
+  <h1><%= @subject.name %></h1>
+  <h2>Add a new assignment</h2>
+
+
   <%= form_for [@subject, @assignment] do |f|  %>
     <%= f.label :assignment_type, "Select Assignment Type"%><br><br>
     <%= f.radio_button(:assignment_type,  "HW") %>HW<br><br>
@@ -11,7 +14,7 @@
     <%= f.label :assignment_name, "Assignment name: "%>
     <%= f.text_field :name %></br></br>
 
-    <%= f.label :assignment_note, "Assignment notes: "%>
+    <%= f.label :assignment_note, "Assignment notes: "%><br>
    <%= f.text_area :notes %></br></br>
 
 
