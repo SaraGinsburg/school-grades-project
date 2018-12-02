@@ -1,5 +1,5 @@
+<h2>Teachers</h2>
 
-<h2>Sign In</h2>
 <%= form_for(@user, url: sessions_create_path) do |f| %>
 
   <%= f.label :name, "Select your name"%><br>
@@ -16,6 +16,17 @@
 
 <h2>Or</h2>
 
+<%= button_to('Log in with Google', '/auth/google_oauth2')%><br>
+______________________________________________________
+<h2>Students</h2>
 
+<%= form_for(@student, url: sessions_create_path) do |f| %>
 
-<%= button_to('Log in with Google', '/auth/google_oauth2')%>
+  <%= f.label :name, "Select your name"%><br>
+  <%= f.collection_select(:name, @students,  :name, :name) %><br><br>
+
+  <%= f.label :password, "Enter your password"%><br>
+  <%= f.password_field :password %><br><br>
+
+  <%= f.submit "Sign In"%>
+<% end %>

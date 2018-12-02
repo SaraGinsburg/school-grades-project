@@ -1,0 +1,15 @@
+<% if session[:user_id] %>
+  <% @student = Student.find(session[:user_id])%>
+  <h1><%= @student.name %></h1>
+
+  <h2><%= @student.email %></h2>
+
+
+<% else %>
+  <% redirect_to root_path %>
+<% end %>
+
+<br>
+<h3>What would you like to do?</h3><br>
+
+<%= link_to('See all your courses', student_subjects_path(@student))  %><br>

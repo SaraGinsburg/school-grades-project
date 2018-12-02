@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get '/auth/google_oauth2/callback' => 'sessions#create'
   get '/auth/failure', to: redirect('/')
 
-  get 'me', to: 'me#show', as: 'me'
+  get 'me_user', to: 'me_user#show', as: 'me_user'
+  get 'me_student', to: 'me_student#show', as: 'me_student'
 
 
 

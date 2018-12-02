@@ -1,4 +1,4 @@
-class MeController < ApplicationController
+class MeUserController < ApplicationController
   before_action :authenticate
   def show
   end

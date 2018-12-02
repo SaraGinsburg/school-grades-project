@@ -1,6 +1,7 @@
 class SubjectsController < ApplicationController
   before_action :find_subject, only: [:show, :edit, :update, :destroy]
   def index
+
     @user = current_user
     @subjects = Subject.all.where(user_id: @user.id)
   end
@@ -19,7 +20,8 @@ class SubjectsController < ApplicationController
   end
 
   def show
-  
+
+
   end
 
   private
