@@ -1,9 +1,8 @@
 
 <h1><%= @assignment.subject.name %> - <%= @assignment.assignment_type%></h1>
-<% if @user.admin %>
+
   <strong>Teacher: </strong>
-<% end %>
-<%= @user.name %><br>
+    <%= @user.name %><br>
 
 <strong>Assignment weight:</strong> <%= @assignment.weight %><br>
 <strong>Assignment Details:</strong> <%= @assignment.name %><br>

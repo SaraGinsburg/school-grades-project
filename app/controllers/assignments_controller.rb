@@ -25,8 +25,13 @@ class AssignmentsController < ApplicationController
   end
 
   def show
+
     @assignment = Assignment.find(params[:id])
-    @user = User.find(params[:user_id])
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+    else
+      @user = @assignment.subject.user
+    end
   end
 
   private

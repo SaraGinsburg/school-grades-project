@@ -11,8 +11,15 @@
   <% @student = Student.find(params[:student_id]) %>
   <h1>All Courses taken by: <%= @student.name %></h1>
   <% @student.subjects.each do |subject| %>
-    <p>Course: <%= subject.name %></p>
-    <p>Description: <%= subject.description %></p>
+    <p><strong>Course: </strong><%= subject.name %></p>
+    <p><strong>Description: </strong><%= subject.description %></p>
+
+    <% subject.assignments.order(:assignment_type).each do |assignment|%>
+      <%= assignment.assignment_type %>        <%= assignment.created_at.strftime("%m/%d/%Y") %><br>
+      <%= link_to(assignment.name, subject_assignment_path(subject, assignment)) %><br>
+      <%= assignment.notes%><br><br>
+    <% end %>
+
   <% end %>
 <% else %>
   <% redirect_to login_path %>
