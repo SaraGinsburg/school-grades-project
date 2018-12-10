@@ -1,4 +1,8 @@
 
+<% if flash[:notice] %>
+    <h2><div class="notice"><%= flash[:notice] %></div></h2>
+  <% end %>
+
 <% if params.has_key? "user_id" %>
   <% @user = User.find(params[:user_id]) %>
   <h1>All Subjects taugt by: <%= @user.name %></h1>

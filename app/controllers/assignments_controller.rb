@@ -22,7 +22,10 @@ class AssignmentsController < ApplicationController
     end
   end
 
-  
+  def update
+    binding.pry
+  end
+
   def show
     @assignment = Assignment.find(params[:id])
     if params[:user_id]
@@ -39,6 +42,7 @@ class AssignmentsController < ApplicationController
       :user_id,
       :assignment_type,
       :name,
+    
       :notes
     )
   end
