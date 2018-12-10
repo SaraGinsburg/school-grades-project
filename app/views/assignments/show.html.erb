@@ -7,3 +7,5 @@
 <strong>Assignment weight:</strong> <%= @assignment.weight %><br>
 <strong>Assignment Details:</strong> <%= @assignment.name %><br>
 <%= @assignment.notes %>
+
+<%= button_to "Assignment Submitted", {controller: "students_assignments", action: "create", assignment_id: @assignment.id} %>

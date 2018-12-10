@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :subjects do
-    resources :assignments, :only => [:create, :index, :new, :show]
+    resources :assignments, :only => [:create, :index, :new, :show, :update]
   end
 
   resources :subjects do
@@ -32,5 +32,9 @@ Rails.application.routes.draw do
   resources :students do
     resources :subjects
   end
+
+
+  resources :students_assignments, :only => [:index, :show, :new, :create]
+
 
 end

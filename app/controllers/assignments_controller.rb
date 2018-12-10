@@ -11,10 +11,8 @@ class AssignmentsController < ApplicationController
   end
 
   def create
-
     @user = User.find(session[:user_id])
     @assignment = Assignment.new(assignment_params)
-    @assignment.user_id = session[:user_id]
     @assignment.subject_id = params[:subject_id]
 
     if @assignment.save
@@ -24,8 +22,8 @@ class AssignmentsController < ApplicationController
     end
   end
 
+  
   def show
-
     @assignment = Assignment.find(params[:id])
     if params[:user_id]
       @user = User.find(params[:user_id])
@@ -41,7 +39,6 @@ class AssignmentsController < ApplicationController
       :user_id,
       :assignment_type,
       :name,
-      :grade,
       :notes
     )
   end
@@ -50,5 +47,7 @@ class AssignmentsController < ApplicationController
     @user = User.find(session[:user_id])
   end
 
-
+  def mark_done
+    @assignment.update(done: true)
+  end
 end

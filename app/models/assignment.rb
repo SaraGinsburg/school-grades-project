@@ -1,9 +1,13 @@
 class Assignment < ApplicationRecord
-  belongs_to :user
+
   belongs_to :subject
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 40 }
   validates :assignment_type, presence: true
+
+
+  has_many :students_assignments
+  has_many :students, through: :students_assignments
 
 
   def weight
