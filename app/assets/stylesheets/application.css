@@ -26,7 +26,7 @@
    font-size:22px;
  }
 
- a:link, a:visited{
+ .navbar-link{
    display:block;
    font-weight:bold;
    color:#FFFFFF;

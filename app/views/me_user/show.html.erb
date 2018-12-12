@@ -5,8 +5,9 @@
 
 
     <ul>
-      <li><a href="<%= root_path %>"/>Home</a></li>
-      <li><a href="<%= signout_path %>"/>Logout</a></li>
+      <li><a class="navbar-link" href="<%= login_path %>"/>Back</a></li>
+      <li><a class="navbar-link" href="<%= root_path %>"/>Home</a></li>
+      <li><a class="navbar-link" href="<%= signout_path %>"/>Logout</a></li>
     </ul>
 
 
@@ -35,5 +36,5 @@
   <h3>What would you like to do?</h3><br>
 
   <%= link_to('See lists of all subjects taught by you', user_subjects_path(@user))  %><br>
-  <%= link_to('See students enrolled in your classes', subject_students_path(@user, @subjects))  %><br><br>
+  <%= link_to('See students enrolled in your classes', subject_students_path(@user, @subjects))  %><br>
   <%= link_to('See students excelling in citizenship', excelling_path(@user))  %><br><br>

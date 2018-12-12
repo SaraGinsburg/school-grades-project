@@ -1,15 +1,17 @@
+
+
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
 
     <ul>
       <% if params.has_key? "user_id" %>
-        <li><a href="<%= me_user_path %>"/>Back</a></li>
+        <li><a class="navbar-link" href="<%= me_user_path %>"/>Back</a></li>
       <% elsif params.has_key? "student_id"%>
-        <li><a href="<%= me_student_path %>"/>Back</a></li>
+        <li><a class="navbar-link" href="<%= me_student_path %>"/>Back</a></li>
       <% end %>
-      <li><a href="<%= root_path %>"/>Home</a></li>
-      <li><a href="<%= signout_path %>"/>Logout</a></li>
+      <li><a class="navbar-link" href="<%= root_path %>"/>Home</a></li>
+      <li><a class="navbar-link" href="<%= signout_path %>"/>Logout</a></li>
     </ul>
 
    </div>
