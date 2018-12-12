@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'me_user', to: 'me_user#show', as: 'me_user'
   get 'me_student', to: 'me_student#show', as: 'me_student'
 
-
+  get '/excelling', to: 'students#excelling'
 
 
   resources :users do
@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :subjects do
     resources :students
   end
+
 
   resources :students do
     resources :subjects

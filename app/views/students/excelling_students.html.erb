@@ -1,0 +1,10 @@
+
+<%= render 'form'%>
+
+<h2>Teacher: <%= @user.name %></h2>
+<h2>Excelling Students </h2>
+
+<% @excelling_students.each do |student| %>
+  <strong><%= student.id %>. <%= student.name %></strong><br>
+Citizenship Grade: <%= student.citizenship_grade %><br><br>
+<% end %>
