@@ -1,4 +1,22 @@
-<%= render 'form'%>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+
+
+    <ul>
+      <li><a class="navbar-link" href="<%= user_subjects_path %>"/>Back</a></li>
+      <li><a class="navbar-link" href="<%= root_path %>"/>Home</a></li>
+      <li><a class="navbar-link" href="<%= signout_path %>"/>Logout</a></li>
+    </ul>
+
+
+   </div>
+   <div class="navbar-collapse collapse">
+     <ul class="nav navbar-nav">
+     </ul>
+   </div><!--/.nav-collapse -->
+ </div>
+</div>
 
 <p><strong><%= @subject.name %></strong></p><br>
 <%= @subject.description %><br>
@@ -8,5 +26,3 @@
   <%= assignment.name %><br>
   <%= assignment.notes%><br><br>
 <% end %>
-
-<%= link_to 'Back', root_path %>
