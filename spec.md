@@ -49,6 +49,7 @@ Specs:
  ✔︎  Include form display of validation errors (form URL e.g. /recipes/new)
       http://localhost:3000/users
       1 error prohibited this user from being saved:
+
       Password can't be blank
 Confirm:
 
