@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+  
     if params.has_key? "student"
       @student = Student.find_by(name: params[:student][:name])
       return head(:forbidden) unless @student.authenticate(params[:student][:password])

@@ -1,7 +1,10 @@
 class StudentsAssignmentsController < ApplicationController
 
-def new
-end
+  def new
+  end
+
+  def show
+  end
 
   def create
     @student = Student.find(session[:user_id])
@@ -20,5 +23,27 @@ end
   end
 
 
+  def update
+    current_record = StudentsAssignment.find(params[:id])
+    current_record.update(done: true)
+
+    render file: '../views/me_student/show.html.erb'
+
+  end
+
+  def incomplete
+    @students_assignments = StudentsAssignment.all.where(student_id: session[:user_id])
+    if !@students_assignments.empty?
+      @student_name = @students_assignments.first.student.name
+      @inc = @students_assignments.where(done: false )
+      render 'incomplete'
+    else
+
+      render file: '../views/me_student/show.html.erb'
+
+    end
+
+
+  end
 
 end

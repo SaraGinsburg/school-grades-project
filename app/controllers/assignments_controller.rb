@@ -23,7 +23,7 @@ class AssignmentsController < ApplicationController
   end
 
   def update
-    binding.pry
+
   end
 
   def show
@@ -35,6 +35,8 @@ class AssignmentsController < ApplicationController
     end
   end
 
+  
+
   private
   def assignment_params
     params.require(:assignment).permit(
@@ -42,7 +44,7 @@ class AssignmentsController < ApplicationController
       :user_id,
       :assignment_type,
       :name,
-    
+
       :notes
     )
   end
@@ -54,4 +56,5 @@ class AssignmentsController < ApplicationController
   def mark_done
     @assignment.update(done: true)
   end
+
 end

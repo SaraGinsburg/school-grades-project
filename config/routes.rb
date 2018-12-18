@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'me_student', to: 'me_student#show', as: 'me_student'
 
   get '/excelling', to: 'students#excelling'
+  get '/incomplete', to: 'students_assignments#incomplete'
 
 
   resources :users do
@@ -35,7 +36,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :students_assignments, :only => [:index, :show, :new, :create]
+  resources :students_assignments, :only => [:index, :show, :new, :create, :update]
 
 
 end
