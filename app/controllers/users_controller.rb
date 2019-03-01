@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   end
 
   def create
-
     @user = User.new(user_params)
     @user.update(name: @user.first_name + " " + @user.last_name)
     if @user.save

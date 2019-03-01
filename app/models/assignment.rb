@@ -2,7 +2,7 @@ class Assignment < ApplicationRecord
 
   belongs_to :subject
 
-  validates :name, presence: true, uniqueness: true, length: { maximum: 40 }
+  validates :name, presence: true,  length: { maximum: 40 }
   validates :assignment_type, presence: true
 
 

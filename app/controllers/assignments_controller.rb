@@ -31,11 +31,12 @@ class AssignmentsController < ApplicationController
     if params[:user_id]
       @user = User.find(params[:user_id])
     else
+      
       @user = @assignment.subject.user
     end
   end
 
-  
+
 
   private
   def assignment_params
