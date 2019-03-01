@@ -1,9 +1,12 @@
 class SubjectsController < ApplicationController
   before_action :find_subject, only: [:show, :edit, :update, :destroy]
   def index
-
     @user = current_user
     @subjects = Subject.all.where(user_id: @user.id)
+    respond_to do |f|
+      f.html {render :index}
+      f.json {render json: @subjects}
+    end
   end
 
   def new

@@ -14,8 +14,6 @@ class SessionsController < ApplicationController
       @student = Student.find_by(name: params[:student][:name])
       return head(:forbidden) unless @student.authenticate(params[:student][:password])
       session[:user_id] = @student.id
-      puts("just before redirect")
-      binding.pry
       redirect_to me_student_path
     else
       if params.has_key? "user"
