@@ -11,9 +11,10 @@
 Student.create(name: 'Linor',  email: 'Linor@gmail.com')
 Student.create(name: 'Chaya',  email: 'Chaya@gmail.com')
 Student.create(name: 'Rivky',  email: 'Rivky@gmail.com')
+Student.create(name: 'Hindy',  email: 'Hindy@gmail.com', password: 'hindy')
 #
-Subject.create(user_id: 6, name: 'Algebra')
-Subject.create(user_id: 6, name: 'Geometry')
+Subject.create(user_id: 7, name: 'Algebra')
+Subject.create(user_id: 7, name: 'Geometry')
 Subject.create(user_id: 6, name: 'Technology')
 
 Subject.create(user_id: 3, name: 'PE')
@@ -44,6 +45,8 @@ StudentsAssignment.create(student_id: 1, assignment_id: 4)
 StudentsAssignment.create(student_id: 2, assignment_id: 4)
 StudentsAssignment.create(student_id: 3, assignment_id: 4)
 
+StudentsSubject.create(student_id: 7, subject_id: 10)
+StudentsSubject.create(student_id: 7, subject_id: 11)
 StudentsSubject.create(student_id: 1, subject_id: 10)
 StudentsSubject.create(student_id: 2, subject_id: 10)
 StudentsSubject.create(student_id: 3, subject_id: 10)

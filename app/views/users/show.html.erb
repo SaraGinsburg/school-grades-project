@@ -1,3 +1,24 @@
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+
+
+    <ul>
+      <li><a class="navbar-link" href="<%= login_path %>"/>Back</a></li>
+      <li><a class="navbar-link" href="<%= root_path %>"/>Home</a></li>
+      <li><a class="navbar-link" href="<%= signout_path %>"/>Logout</a></li>
+    </ul>
+
+
+   </div>
+   <div class="navbar-collapse collapse">
+     <ul class="nav navbar-nav">
+     </ul>
+   </div><!--/.nav-collapse -->
+ </div>
+</div>
+
 <p id="notice"><%= notice %></p>
 
 <% if @message %>
@@ -5,19 +26,22 @@
     <p><%= @message %></p>
   </div>
 <% end %>
-<% if session[:user_id] %>
-  <% @user = User.find(session[:user_id])%>
-  <h1><%= @user.name %></h1>
-  <% if @user.admin %>
-    <h2>Administrator</h2>
+
+  <% if session[:user_id] %>
+    <% @user = User.find(session[:user_id])%>
+    <h1><%= @user.name %></h1>
+    <% if @user.admin %>
+      <h2>Administrator</h2>
+    <% end %>
+    <h2><%= @user.email %></h2>
+    <img src="<%= @user.image %>"
+  <% else %>
+    <%= link_to('Log in with Google', '/auth/google_oauth2')%>
   <% end %>
-  <h2><%= @user.email %></h2>
 
-  <img src="<%= @user.image %>"
-<% else %>
-  <%= link_to('Log in with Google', '/auth/google_oauth2')%>
-<% end %>
-
-<h3>What would you like to do?</h3>
-
-<%= link_to('See lists of all subjects taught by you', user_subjects_path(@user))  %>
+<br>
+  <h3>What would you like to do?</h3><br>
+  <button id='user-subjects'><%= link_to('See lists of all subjects taught by you', user_subjects_path(@user))  %></button><br>
+<div id="ajax-subjects"></div>
+  <button id='students-enrolled'><%= link_to('See students enrolled in your classes', subject_students_path(@user, @subjects))  %></button><br>
+  <button id='excelling-students'><%= link_to('See students excelling in citizenship', excelling_path(@user))  %></button><br><br>

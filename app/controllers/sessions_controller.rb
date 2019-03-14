@@ -8,19 +8,18 @@ class SessionsController < ApplicationController
     @users = User.all
   end
 
-  def create
 
+  def create
     if params.has_key? "student"
       @student = Student.find_by(name: params[:student][:name])
       return head(:forbidden) unless @student.authenticate(params[:student][:password])
       session[:user_id] = @student.id
-      redirect_to me_student_path
+      redirect_to student_path(@student)
+
     else
       if params.has_key? "user"
         @user = User.find_by(name: params[:user][:name])
         return head(:forbidden) unless @user.authenticate(params[:user][:password])
-        session[:user_id] = @user.id
-        redirect_to me_user_path
       else
         @user = User.find_or_create_by(uid: auth['uid']) do |u|
           u.name = auth['info']['name']
@@ -30,9 +29,10 @@ class SessionsController < ApplicationController
           u.image = auth['info']['image']
           u.password = SecureRandom.hex
         end
-        session[:user_id] = @user.id
-        redirect_to me_user_path
       end
+
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
     end
   end
 

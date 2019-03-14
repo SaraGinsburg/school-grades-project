@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
+  before_action :authenticate
   before_action :find_user, only: [:show, :edit, :update, :destroy]
+
+  def show
+  end
 
   def index
   end
+
 
   def new
     @user = User.new
@@ -13,7 +18,7 @@ class UsersController < ApplicationController
     @user.update(name: @user.first_name + " " + @user.last_name)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to me_user_path, notice: "Successfully created new user"
+      redirect_to user_path, notice: "Successfully created new user"
     else
       render 'new'
     end
@@ -23,9 +28,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-
-      redirect_to user_path(@user), notice: 'User was successfully updated.'
+    if @current_user.update(user_params)
+      redirect_to user_path(@current_user), notice: 'User was successfully updated.'
     else
       render :edit
     end
@@ -42,6 +46,6 @@ class UsersController < ApplicationController
 
 
   def find_user
-    @user = User.find(params[:id])
+    @current_user ||= User.find(params[:id])
   end
 end

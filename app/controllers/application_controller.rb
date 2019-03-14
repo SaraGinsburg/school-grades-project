@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def student_signed_in?
-    !!current_student
+    !!current_student 
   end
 
 

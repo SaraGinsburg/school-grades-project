@@ -1,4 +1,9 @@
 class StudentsController < ApplicationController
+  before_action :authenticate
+
+  def show
+  end
+
   def index
     @user = current_user
     @subjects = @user.subjects

@@ -1,11 +1,23 @@
+
 class SubjectsController < ApplicationController
   before_action :find_subject, only: [:show, :edit, :update, :destroy]
+
   def index
-    @user = current_user
-    @subjects = Subject.all.where(user_id: @user.id)
-    respond_to do |f|
-      f.html {render :index}
-      f.json {render json: @subjects}
+    if User.where(id: params[:user_id]).exists?
+      @user = User.find(params[:user_id])
+      @subjects = Subject.all.where(user_id: @user.id)
+      respond_to do |f|
+        f.html {render :index}
+        f.json {render json: @subjects}
+      end
+    elsif Student.where(id: params[:student_id]).exists?
+      @student = Student.find(params[:student_id])
+      respond_to do |f|
+        f.html {render :index}
+        f.json {render json: @subjects}
+      end
+    else
+      redirect_to root_path
     end
   end
 
@@ -23,13 +35,10 @@ class SubjectsController < ApplicationController
   end
 
   def show
-
-
   end
 
   private
   def subject_params
-
     params.require(:subject).permit(:name, :description, :user_id)
   end
 
@@ -37,15 +46,3 @@ class SubjectsController < ApplicationController
       @subject = Subject.find(params[:id])
   end
 end
-
-# create_table "subjects", force: :cascade do |t|
-#   t.string "name"
-#   t.text "description"
-#   t.datetime "created_at", null: false
-#   t.datetime "updated_at", null: false
-#   t.integer "hw_weight"
-#   t.integer "quiz_weight"
-#   t.integer "test_weight"
-#   t.integer "project_weight"
-#   t.integer "user_id"
-# end

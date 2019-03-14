@@ -1,6 +1,7 @@
 require 'pry'
 class AssignmentsController < ApplicationController
-  before_action :set_user, except: [:create]
+  # before_action :set_user, except: [:create]
+  before_action :set_student, only: [:show]
 
   def index
     @assignments = Assignment.all
@@ -28,11 +29,13 @@ class AssignmentsController < ApplicationController
 
   def show
     @assignment = Assignment.find(params[:id])
-    if params[:user_id]
-      @user = User.find(params[:user_id])
-    else
-      
-      @user = @assignment.subject.user
+    if session[:user_id]
+      @student = Student.find(session[:user_id])
+    end
+    @user = @assignment.subject.user
+    respond_to do |f|
+      f.html {render :show}
+      f.json {render json: @assignment}
     end
   end
 
@@ -50,8 +53,8 @@ class AssignmentsController < ApplicationController
     )
   end
 
-  def set_user
-    @user = User.find(session[:user_id])
+  def set_student
+    @user = Student.find(session[:user_id])
   end
 
   def mark_done

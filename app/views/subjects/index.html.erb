@@ -6,9 +6,10 @@
 
     <ul>
       <% if params.has_key? "user_id" %>
-        <li><a class="navbar-link" href="<%= me_user_path %>"/>Back</a></li>
+        <li><a class="navbar-link" href="<%= user_path %>"/>Back</a></li>
       <% elsif params.has_key? "student_id"%>
-        <li><a class="navbar-link" href="<%= me_student_path %>"/>Back</a></li>
+
+        <li><a class="navbar-link" href="<%= student_path(@student) %>"/>Back</a></li>
       <% end %>
       <li><a class="navbar-link" href="<%= root_path %>"/>Home</a></li>
       <li><a class="navbar-link" href="<%= signout_path %>"/>Logout</a></li>
@@ -27,22 +28,26 @@
   <% @user.subjects.each do |subject| %>
     <p>Course: <%= subject.name %></p>
     <p>Description: <%= subject.description %></p>
-    <%= link_to('Add Assignment', new_subject_assignment_path(subject))  %><br><br>
+  <%= link_to('Add Assignment', new_subject_assignment_path(subject))  %><br><br>
   <% end %>
 <% elsif params.has_key? "student_id"%>
   <% @student = Student.find(params[:student_id]) %>
   <h1>All Courses taken by: <%= @student.name %></h1>
   <% @student.subjects.each do |subject| %>
+  <br>
     <p><strong>Course: </strong><%= subject.name %></p>
     <p><strong>Description: </strong><%= subject.description %></p>
 
     <% subject.assignments.order(:assignment_type).each do |assignment|%>
-      <%= assignment.assignment_type %>        <%= assignment.created_at.strftime("%m/%d/%Y") %><br>
-      <%= link_to(assignment.name, subject_assignment_path(subject, assignment)) %><br>
-      <%= assignment.notes%><br><br>
+
+      <input type="button" class="assignment-data" assignid="<%= assignment.id %>" subjectid="<%= subject.id %>" >
+      <%= assignment.assignment_type %>
+      <%= assignment.created_at.strftime("%m/%d/%Y") %><br>
+    <div id="<%= assignment.id %>"></div>
     <% end %>
 
   <% end %>
+
 <% else %>
   <% redirect_to login_path %>
 <% end %>

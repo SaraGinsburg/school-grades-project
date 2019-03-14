@@ -27,19 +27,25 @@ class StudentsAssignmentsController < ApplicationController
     current_record = StudentsAssignment.find(params[:id])
     current_record.update(done: true)
 
-    render file: '../views/me_student/show.html.erb'
+    render file: '../views/students/show.html.erb'
 
   end
 
   def incomplete
     @students_assignments = StudentsAssignment.all.where(student_id: session[:user_id])
+
     if !@students_assignments.empty?
+      @student = current_student
       @student_name = @students_assignments.first.student.name
       @inc = @students_assignments.where(done: false )
-      render 'incomplete'
+      respond_to do |f|
+        f.html {render :incomplete}
+        f.json {render json: @inc}
+      end
+      
     else
 
-      render file: '../views/me_student/show.html.erb'
+      render file: '../views/students/show.html.erb'
 
     end
 
