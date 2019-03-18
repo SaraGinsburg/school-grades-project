@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user.update(name: @user.first_name + " " + @user.last_name)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path, notice: "Successfully created new user"
+      redirect_to user_path(@user), notice: "Successfully created new user"
     else
       render 'new'
     end

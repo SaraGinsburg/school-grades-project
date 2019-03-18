@@ -2,7 +2,7 @@ $(function () {
   console.log('students.js is loaded')
   listenForClick()
   listenForAssignmentDetailsClick()
-  // listenFor.....()
+  listenForNewAssignmentFormClick()
 });
 
 function listenForClick() {
@@ -20,6 +20,12 @@ function listenForAssignmentDetailsClick() {
   })
 }
 
+function listenForNewAssignmentFormClick() {
+    $('button.add-assignment').on('click', function(event){
+    event.preventDefault()
+    console.log("in listenForNewAssignmentFormClick")
+  })
+}
 
 function getAssignment(){
   console.log("in getAssignment")
@@ -43,6 +49,7 @@ $(`#${a}`).html(newAssignmentHtml)
 function getUserSubjects(){
   uid = window.location.href.split('/')[4]
   uid = uid.replace(/\D/g,'');
+
   console.log("in getUserSubjects")
 
   $.ajax({
@@ -92,10 +99,15 @@ class Subject {
 }
 
 Subject.prototype.subjectHTML = function (){
+  console.log("in subject prototype")
   return (`
     <div class='subject'>
       <h3>${this.name}</h3>
 			<p>${this.description}</p>
-		</div>
+   </div>
+
+  <input type="button" class="add-assignment" value="Add assignment"  subjectid="<%= subject.id %>" >
+  <div id="<%= this.id %>">this div is  ${this.id}</div>
+
   `)
 }
