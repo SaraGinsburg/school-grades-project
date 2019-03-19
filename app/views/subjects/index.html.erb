@@ -39,11 +39,10 @@
     <p><strong>Description: </strong><%= subject.description %></p>
 
     <% subject.assignments.order(:assignment_type).each do |assignment|%>
-
       <input type="button" class="assignment-data" assignid="<%= assignment.id %>" subjectid="<%= subject.id %>" >
       <%= assignment.assignment_type %>
       <%= assignment.created_at.strftime("%m/%d/%Y") %><br>
-    <div id="<%= assignment.id %>"></div>
+      <div id="<%= assignment.id %>"></div>
     <% end %>
 
   <% end %>
