@@ -2,7 +2,7 @@ $(function () {
   console.log('students.js is loaded')
   listenForClick()
   listenForAssignmentDetailsClick()
-  listenForNewAssignmentFormClick()
+  // listenForNewAssignmentFormClick()
   console.log("after listening  for new assignment")
 });
 
@@ -21,11 +21,13 @@ function listenForAssignmentDetailsClick() {
   })
 }
 
-function listenForNewAssignmentFormClick() {
-    $('button.add-assignment').on('click', function(event){
-      event.preventDefault()
-      console.log("in listenForNewAssignmentFormClick")
-  })
+function GetNewAssignmentForm() {
+  console.log("in GetNewAssignmentForm")
+  s = event.target.getAttribute('id')
+  let newAssignmentForm = Assignment.newAssignmentForm()
+  $(`#${s}`).append(newAssignmentForm)
+  // $(`#${s}`).innerHTML = newAssignmentForm
+
 }
 
 function getAssignment(){
@@ -76,6 +78,24 @@ class Assignment{
     this.name = obj.name
     this.notes = obj.notes
   }
+  static newAssignmentForm(){
+    return (`
+      <br>
+		<strong>New assignment form</strong>
+			<form id="assignform">
+				<input type='radio' id='HW' name='assignment_type' value='HW' checked>HW</input><br>
+				<input type='radio' id='Project' name='assignment_type' value='Project' checked>Project</input><br>
+				<input type='radio' id='Test' name='assignment_type' value='Test' checked>Test</input><br>
+				<input type='radio' id='Quiz' name='assignment_type' value='Quiz' checked></input>Quiz<br><br>
+
+        Assignment Name: <input type='text' id='assignment_name' name='assignment_name' ></input><br><br>
+
+				<input type='submit' value='Create Assignment'><br><br>
+			</form>
+      <textarea rows="4" cols="50" name="notes" form="assignform">
+        Enter assignment notes here...</textarea>
+      		`)
+  }
 }
 
 
@@ -101,10 +121,12 @@ class Subject {
 
 Subject.prototype.subjectHTML = function (){
   console.log("in subject prototype")
+  let subjectId = this.id
   return (`
-    <div class='subject'>
       <h3>${this.name}</h3>
 			<p>${this.description}</p>
-   </div>
+    <div id='${subjectId}' >
+      <input type="button" id="${subjectId}" class='add-assignment' onclick="GetNewAssignmentForm()" value="Add Assignment"  />
+    </div>
   `)
 }
