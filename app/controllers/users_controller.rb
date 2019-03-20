@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate
+  before_action :authenticate, except: [:new, :create]
   before_action :find_user, only: [:show, :edit, :update, :destroy]
 
   def show
@@ -10,10 +10,13 @@ class UsersController < ApplicationController
 
 
   def new
+    # binding.pry
     @user = User.new
   end
 
   def create
+    # binding.pry
+
     @user = User.new(user_params)
     @user.update(name: @user.first_name + " " + @user.last_name)
     if @user.save

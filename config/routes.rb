@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 
   #SESSIONS
+
   root "welcome#home"
   get 'login', to: 'sessions#new'
   post "/sessions/create", to: "sessions#create"

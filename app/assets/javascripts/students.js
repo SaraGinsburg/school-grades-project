@@ -2,8 +2,8 @@ $(function () {
   console.log('students.js is loaded')
   listenForClick()
   listenForAssignmentDetailsClick()
-  listenForNewUserFormClick()
-  // listenForNewAssignmentFormClick()
+  listenForNewAssignmentFormClick()
+  console.log("after listening  for new assignment")
 });
 
 function listenForClick() {
@@ -21,44 +21,12 @@ function listenForAssignmentDetailsClick() {
   })
 }
 
-function listenForNewUserFormClick() {
-    $('button.create-user').on('click', function(event){
+function listenForNewAssignmentFormClick() {
+    $('button.add-assignment').on('click', function(event){
       event.preventDefault()
-      console.log("in listenForNewUserFormClick")
-      // let newUserForm = User.newUserForm()
-      // document.querySelector('div#new-user-form-div').innerHTML = newUserForm
+      console.log("in listenForNewAssignmentFormClick")
   })
 }
-
-class User {
-  constructor(obj) {
-    this.id = obj.id
-    this.first_name = obj.first_name
-    this.last_name = obj.last_name
-    this.email = obj.email
-    this.password = obj.password
-  }
-
-  static newUserForm() {
-    return (`
-      <strong>Sign up:</strong>
-      <form>
-        <input id='post-user' type='text' name='first_name'  >First name</input>
-        <input type='text' name='last_name' >Last first_name</input>
-        <input type='text' name='email' >Email</input>
-        <input type='text' name='password' >Password</input>
-        <input type="checkbox" name="admin" >Check box if you are an Administrator<br>
-        <input type="submit" value="Create User">
-      </form>
-    `)
-  }
-}
-// function listenForNewAssignmentFormClick() {
-//     $('button.add-assignment').on('click', function(event){
-//       event.preventDefault()
-//       console.log("in listenForNewAssignmentFormClick")
-//   })
-// }
 
 function getAssignment(){
   console.log("in getAssignment")
