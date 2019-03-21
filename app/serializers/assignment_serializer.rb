@@ -1,5 +1,5 @@
 class AssignmentSerializer < ActiveModel::Serializer
-  attributes :id, :subject_id, :assignment_type, :name, :notes
+  attributes :id, :subject_id,  :assignment_type, :name, :notes
 
   belongs_to :subject
 

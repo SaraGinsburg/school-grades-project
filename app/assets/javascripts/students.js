@@ -21,14 +21,42 @@ function listenForAssignmentDetailsClick() {
   })
 }
 
-function GetNewAssignmentForm() {
+function getNewAssignmentForm() {
   console.log("in GetNewAssignmentForm")
   s = event.target.getAttribute('id')
   let newAssignmentForm = Assignment.newAssignmentForm()
-  $(`#${s}`).append(newAssignmentForm)
-  // $(`#${s}`).innerHTML = newAssignmentForm
+  $(`#${s}`).replaceWith(newAssignmentForm)
 
 }
+
+function postAssignment(){
+  var uid = window.location.href.split('/')[4]
+      uid = uid.replace(/\D/g,'');
+  var url = 'http://localhost:3000/subjects/' + s + '/assignments'
+  var data = $('form').serialize();
+      data += "&subject_id="
+      data += `${s}`
+      data += "&created_at="
+      data += `${Date.now()}`
+      data += "&updated_at="
+      data += `${Date.now()}`
+  console.log(data)
+
+
+
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: data,
+    success: function(response){
+      console.log("the posted data is: ", response)
+    },
+    error: function() {
+      alert("what is going on??????")
+    }
+  })
+ }
+
 
 function getAssignment(){
   console.log("in getAssignment")
@@ -77,23 +105,24 @@ class Assignment{
     this.assignment_type = obj.assignment_type
     this.name = obj.name
     this.notes = obj.notes
+    this.created_at = obj.created_at
+    this.updated_at = obj.updated_at
   }
   static newAssignmentForm(){
     return (`
       <br>
 		<strong>New assignment form</strong>
 			<form id="assignform">
-				<input type='radio' id='HW' name='assignment_type' value='HW' checked>HW</input><br>
-				<input type='radio' id='Project' name='assignment_type' value='Project' checked>Project</input><br>
-				<input type='radio' id='Test' name='assignment_type' value='Test' checked>Test</input><br>
-				<input type='radio' id='Quiz' name='assignment_type' value='Quiz' checked></input>Quiz<br><br>
 
-        Assignment Name: <input type='text' id='assignment_name' name='assignment_name' ></input><br><br>
+				<input type='radio' id='HW' name='assignment_type' value='HW' checked >HW</input><br>
+				<input type='radio' id='Project' name='assignment_type' value='Project' >Project</input><br>
+				<input type='radio' id='Test' name='assignment_type' value='Test' >Test</input><br>
+				<input type='radio' id='Quiz' name='assignment_type' value='Quiz' ></input>Quiz<br><br>
+        Assignment Details: <br><input type='text' id='name' name='name' ></input><br>
+        Assignment Notes: <br><input type='text' id='notes' name="notes" ></input><br><br>
 
-				<input type='submit' value='Create Assignment'><br><br>
+				<input type='submit' id='post-assignment' value='Create Assignment' onclick="postAssignment()"><br><br>
 			</form>
-      <textarea rows="4" cols="50" name="notes" form="assignform">
-        Enter assignment notes here...</textarea>
       		`)
   }
 }
@@ -126,7 +155,7 @@ Subject.prototype.subjectHTML = function (){
       <h3>${this.name}</h3>
 			<p>${this.description}</p>
     <div id='${subjectId}' >
-      <input type="button" id="${subjectId}" class='add-assignment' onclick="GetNewAssignmentForm()" value="Add Assignment"  />
+      <input type="button" id="${subjectId}" class='add-assignment' onclick="getNewAssignmentForm()" value="Add Assignment"  />
     </div>
   `)
 }
