@@ -12,14 +12,11 @@ class AssignmentsController < ApplicationController
   end
 
   def create
-    binding.pry
-    @user = User.find(session[:user_id])
-    binding.pry
-    @assignment = Assignment.new(assignment_params)
-    binding.pry
-    @assignment.subject_id = params[:subject_id]
+    @subject = Subject.find(params[:subject_id])
+    @assignment = @subject.assignments.build(assignment_params)
 
     if @assignment.save
+      @user = User.find(session[:user_id])
       redirect_to user_subject_path(@user, @assignment.subject), notice: "Assignment added."
     else
       redirect_to  new_subject_assignment_path
@@ -27,7 +24,6 @@ class AssignmentsController < ApplicationController
   end
 
   def update
-
   end
 
   def show
@@ -48,9 +44,9 @@ class AssignmentsController < ApplicationController
   def assignment_params
     params.require(:assignment).permit(
       :subject_id,
+      :user_id,
       :assignment_type,
       :name,
-
       :notes
     )
   end

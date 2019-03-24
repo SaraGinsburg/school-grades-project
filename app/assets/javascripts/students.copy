@@ -47,15 +47,15 @@ function postAssignment(){
       data += "&subject_id="
       data += `${s}`
       console.log(data)
-}
 
+debugger
 
 //   $.ajax({
 //     type: "POST",
-function getAssignment(){
-  console.log("in getAssignment")
-  a = event.target.getAttribute('assignid')
-  s = event.target.getAttribute('subjectid')
+// function getAssignment(){
+//   console.log("in getAssignment")
+//   a = event.target.getAttribute('assignid')
+//   s = event.target.getAttribute('subjectid')
 
   $.ajax({
     url: 'http://localhost:3000/subjects/' + s + '/assignments/' + a,
@@ -69,7 +69,7 @@ $(`#${a}`).html(newAssignmentHtml)
       event.target.innerHTML = newAssignmentHtml
     }
   })
-};
+}
 
 function getUserSubjects(){
   uid = window.location.href.split('/')[4]

@@ -23,7 +23,7 @@
   <h2>Add a new assignment</h2>
 
 
-  <%= form_for [@subject, @assignment] do |f|  %>
+  <%= form_for ([@subject, @assignment])  do |f|  %>
     <%= f.label :assignment_type, "Select Assignment Type"%><br><br>
     <%= f.radio_button(:assignment_type,  "HW") %>HW<br><br>
     <%= f.radio_button(:assignment_type,  "Project") %>Project<br><br>
