@@ -1,9 +1,8 @@
 $(function () {
   console.log('students.js is loaded')
   listenForClick()
-  listenForCreateNewAssignmentClick()
-  listenForAssignmentDetailsClick()
-  console.log("after listening  for new assignment")
+  listenForAssignmentDetailsClick()   //student's assignment details
+
 });
 
 function listenForClick() {
@@ -26,32 +25,33 @@ function getNewAssignmentForm() {
   s = event.target.getAttribute('id')
   let newAssignmentForm = Assignment.newAssignmentForm()
   $(`#${s}`).replaceWith(newAssignmentForm)
-}
 
-function listenForCreateNewAssignmentClick() {
-  console.log("I'm in listenForCreateNewAssignmentClick")
   $('#new_assignment_form').on("submit", function(e){
     e.preventDefault()
+    const data = $(this).serialize()+"&subject_id="+s
+    console.log(data)
+    var url = '/subjects/' + s + '/assignments'
 
-    alert("you clicked submit, hope you continue to do well")
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: data,
+      success: function(data) {
+        alert("hope it will work")
+        // redirect_to user_subject_path(@user, @assignment.subject), notice: "Assignment added."
+      },
+      error: function(data) {
+        alert("something went wrong")      }
+    })
   })
 }
 
 
-function postAssignment(){
-  alert("in postAssignment")
-  var uid = window.location.href.split('/')[4]
-      uid = uid.replace(/\D/g,'');
-  var url = 'http://localhost:3000/subjects/' + s + '/assignments'
-  var data = $('form').serialize();
-      data += "&subject_id="
-      data += `${s}`
-      console.log(data)
-}
 
 
-//   $.ajax({
-//     type: "POST",
+
+
+
 function getAssignment(){
   console.log("in getAssignment")
   a = event.target.getAttribute('assignid')
