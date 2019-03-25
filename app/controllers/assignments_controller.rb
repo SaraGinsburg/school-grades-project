@@ -16,14 +16,7 @@ class AssignmentsController < ApplicationController
     @assignment = @subject.assignments.build(:assignment_type => params[:assignment_type],
                                              :name => params[:name],
                                              :notes => params[:notes])
-    if @assignment.save
-      @user = User.find(session[:user_id])
-      # /users/:user_id/subjects/:id
-      uid = session[:user_id].to_s
-      sid = params[:subject_id].to_s
-      url = "/users/" + uid + "/subjects/" + sid
-      redirect_to url, success: 'assignment added'
-    else
+    if !@assignment.save
       redirect_to  new_subject_assignment_path
     end
   end
