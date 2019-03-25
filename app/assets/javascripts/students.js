@@ -28,24 +28,29 @@ function getNewAssignmentForm() {
 
   $('#new_assignment_form').on("submit", function(e){
     e.preventDefault()
-    const data = $(this).serialize()+"&subject_id="+s
+    // const data = $(this).serialize()+"&subject_id="+s
+    const data = $(this).serialize()
     console.log(data)
     var url = '/subjects/' + s + '/assignments'
+    // $.post(url, data).done(function(data){
+    //   console.log("this is my data", data)
+    // })
+
+
 
     $.ajax({
-      type: "POST",
-      url: url,
-      data: data,
-      success: function(data) {
-        alert("hope it will work")
-        // redirect_to user_subject_path(@user, @assignment.subject), notice: "Assignment added."
-      },
-      error: function(data) {
-        alert("something went wrong")      }
+        url: url,
+        type:"POST",
+        data: data,
+        success: function(data) {
+          uid = window.location.href.split('/')[4]
+          uid = uid.replace(/\D/g,'');
+          newUrl = "/users/" + uid + "/subjects/" + s
+          window.location.assign(newUrl);
+        }
+      })
     })
-  })
-}
-
+  }
 
 
 
