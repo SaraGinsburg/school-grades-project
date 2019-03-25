@@ -28,15 +28,9 @@ function getNewAssignmentForm() {
 
   $('#new_assignment_form').on("submit", function(e){
     e.preventDefault()
-    // const data = $(this).serialize()+"&subject_id="+s
     const data = $(this).serialize()
     console.log(data)
     var url = '/subjects/' + s + '/assignments'
-    // $.post(url, data).done(function(data){
-    //   console.log("this is my data", data)
-    // })
-
-
 
     $.ajax({
         url: url,
@@ -51,11 +45,6 @@ function getNewAssignmentForm() {
       })
     })
   }
-
-
-
-
-
 
 function getAssignment(){
   console.log("in getAssignment")

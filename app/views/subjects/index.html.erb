@@ -36,7 +36,11 @@
   <% @student.subjects.each do |subject| %>
   <br>
     <p><strong>Course: </strong><%= subject.name %></p>
-    <p><strong>Description: </strong><%= subject.description %></p>
+    <p><strong>Description: </strong><%= subject.description %></p><br>
+
+    <% if !subject.assignments.empty? %>
+      <p><strong>Click to see assignment details:</strong></p>
+    <% end %>
 
     <% subject.assignments.order(:assignment_type).each do |assignment|%>
       <input type="button" class="assignment-data" assignid="<%= assignment.id %>" subjectid="<%= subject.id %>" >
