@@ -2,6 +2,11 @@ class StudentsController < ApplicationController
   before_action :authenticate
 
   def show
+    @student = Student.find(params[:id])
+    respond_to do |f|
+      f.html {render :show}
+      f.json {render json: @student}
+    end
   end
 
   def index

@@ -86,6 +86,43 @@ function getUserSubjects(){
   })
 }
 
+function getStudentDetails(){
+  sid = event.target.getAttribute('studentId')
+  url = 'http://localhost:3000/students/'+ sid
+  $.ajax({
+    url: url,
+    method: 'get',
+    dataType: 'json',
+    success: function(data){
+      console.log("the data is", data)
+      const newStudent = new Student(data)
+      const newStudentHtml = newStudent.studentHTML()
+      $(`.${sid}`).html(newStudentHtml)
+    }
+  })
+}
+
+class Student {
+  constructor(obj){
+    this.id = obj.id
+    this.name = obj.name
+    this.email = obj.email
+    this.citizenship_grade = obj.citizenship_grade
+  }
+}
+
+Student.prototype.studentHTML = function (){
+  return (`
+    <div class='student'>
+      <p>
+      <Strong>${this.name}</Strong><br>
+			${this.email}<br>
+			${this.citizenship_grade === "" ?  this.citizenship_grade : ""}
+      </p>
+		</div>
+  `)
+}
+
 class Assignment{
   constructor(obj){
     this.id = obj.id

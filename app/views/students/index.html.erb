@@ -22,7 +22,8 @@
   <% subject.students.each do |student| %>
   <ul >
     <li >
-      <%= student.name %>
+      <input type="button"  onclick="getStudentDetails()"   studentId="<%= student.id %>" value="<%= student.name %>"  />
+      <div class="<%= student.id %>"></div>    
     </li>
   </ul>
   <% end %>
