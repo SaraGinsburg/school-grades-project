@@ -25,11 +25,14 @@
 <% if params.has_key? "user_id" %>
   <% @user = User.find(params[:user_id]) %>
   <h1>All Subjects taugt by: <%= @user.name %></h1>
+  <button id="sort-button">list in descending order</button>
   <% @user.subjects.each do |subject| %>
     <p>Course: <%= subject.name %></p>
     <p>Description: <%= subject.description %></p>
   <%= link_to('Add Assignment', new_subject_assignment_path(subject))  %><br><br>
   <% end %>
+
+
 <% elsif params.has_key? "student_id"%>
   <% @student = Student.find(params[:student_id]) %>
   <h1>All Courses taken by: <%= @student.name %></h1>

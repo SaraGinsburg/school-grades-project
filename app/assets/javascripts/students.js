@@ -2,8 +2,15 @@ $(function () {
   console.log('students.js is loaded')
   listenForClick()
   listenForAssignmentDetailsClick()   //student's assignment details
-
+  listenForSortClick()
 });
+
+function listenForSortClick(){
+  $('button#user-subjects-sorted').on('click', function(event){
+    event.preventDefault()
+    getSubjAscOrder()
+  })
+}
 
 function listenForClick() {
   $('button#user-subjects').on('click', function(event) {
@@ -64,6 +71,27 @@ $(`#${a}`).html(newAssignmentHtml)
     }
   })
 };
+function getSubjAscOrder() {
+  uid = window.location.href.split('/')[4]
+  uid = uid.replace(/\D/g,'');
+  $.ajax({
+    url: 'http://localhost:3000/users/'+ uid + '/subjects',
+    method: 'get',
+    dataType: 'json',
+    success: function(data) {
+      console.log("sort the data, add assignments")
+      data.sort((a,b) => (a.name > b.name) ? 1 : -1)
+      // console.log("the data is: ", data)
+      data.map(subject => {
+        const newSubject = new Subject(subject)
+        const newSubjectWithAssignments = newSubject.withAssignmentsHTML()
+        $('#ajax-sorted-subjects').append(newSubjectWithAssignments)
+      })
+    }
+  })
+}
+
+
 
 function getUserSubjects(){
   uid = window.location.href.split('/')[4]
@@ -138,20 +166,17 @@ class Assignment{
       <br>
 		<strong>New assignment form</strong>
 			<form id="new_assignment_form">
-
 				<input type='radio' id='HW' name='assignment_type' value='HW' checked >HW</input><br>
 				<input type='radio' id='Project' name='assignment_type' value='Project' >Project</input><br>
 				<input type='radio' id='Test' name='assignment_type' value='Test' >Test</input><br>
 				<input type='radio' id='Quiz' name='assignment_type' value='Quiz' ></input>Quiz<br><br>
         Assignment Details: <br><input type='text' id='name' name='name' ></input><br>
         Assignment Notes: <br><input type='text' id='notes' name="notes" ></input><br><br>
-
 				<input type='submit' id='post-assignment' value='Create Assignment' ><br><br>
 			</form>
       		`)
   }
 }
-
 
 Assignment.prototype.assignHTML = function (){
   return (`
@@ -170,6 +195,7 @@ class Subject {
     this.id = obj.id
     this.name = obj.name
     this.description = obj.description
+    this.assignments = obj.assignments
   }
 }
 
@@ -181,6 +207,25 @@ Subject.prototype.subjectHTML = function (){
 			<p>${this.description}</p>
     <div id='${subjectId}' >
       <input type="button" id="${subjectId}" class='add-assignment' onclick="getNewAssignmentForm()" value="Add Assignment"  />
+    </div>
+  `)
+}
+
+Subject.prototype.withAssignmentsHTML = function (){
+  console.log("in subject with assignment prototype")
+  let subjectId = this.id
+  let collection = this.assignments.map(a => {
+    return (`
+      <p>
+      ${a.assignment_type}:  ${a.name}, ${a.notes}</p>
+      `)
+  }).join('')
+
+  return (`
+    <div class='subject'>
+      <h3>${this.name}</h3>
+			<p>${this.description}</p>
+			<p>${collection}</p>
     </div>
   `)
 }

@@ -42,6 +42,10 @@
 <br>
   <h3>What would you like to do?</h3><br>
   <button id='user-subjects'><%= link_to('See lists of all subjects taught by you', user_subjects_path(@user))  %></button><br>
-<div id="ajax-subjects"></div>
+  <div id="ajax-subjects"></div>
+
+  <button id='user-subjects-sorted'><%= link_to('See an ordered list of all subjects (and their assignments) taught by you', user_subjects_path(@user))  %></button><br>
+  <div id="ajax-sorted-subjects"></div>
+
   <button id='students-enrolled'><%= link_to('See students enrolled in your classes', subject_students_path(@user, @subjects))  %></button><br>
   <button id='excelling-students'><%= link_to('See students excelling in citizenship', excelling_path(@user))  %></button><br><br>
