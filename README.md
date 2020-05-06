@@ -8,7 +8,7 @@ Prerequisites
 The setup steps expect following tools installed on the system:
 
 Github
-Ruby 2.3.1
+Ruby 2.7.1
 Rails 5.2.1
 
 Installing
@@ -30,5 +30,5 @@ You can start the rails server using the command given below:
 bundle exec rails s
 And now you can visit the site with the URL http://localhost:3000
 
-License: 
+License:
 This project is licensed under the MIT License - see the LICENSE.md file for details
