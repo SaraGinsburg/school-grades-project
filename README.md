@@ -32,3 +32,4 @@ And now you can visit the site with the URL http://localhost:3000
 
 License:
 This project is licensed under the MIT License - see the LICENSE.md file for details
+# school-grades-project
