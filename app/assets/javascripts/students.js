@@ -1,9 +1,32 @@
 $(function () {
   console.log('students.js is loaded')
+  // listenForInc()
   listenForClick()
   listenForAssignmentDetailsClick()   //student's assignment details
   listenForSortClick()
 });
+
+
+// remove before assessment
+// function createClosure() {
+//   let x = 0
+//   function inc() {
+//     ++x
+//     console.log(x)
+//     return x
+//   }
+//   return inc
+// }
+//
+// let newFunc = createClosure()
+//
+// function listenForInc(){
+//   $('#submit').on('click', function(e){
+//     e.preventDefault()
+//     $('#orig-number').html(newFunc())
+//   })
+// }
+// remove lines until here
 
 function listenForSortClick(){
   $('button#user-subjects-sorted').on('click', function(event){
@@ -196,6 +219,7 @@ class Subject {
     this.name = obj.name
     this.description = obj.description
     this.assignments = obj.assignments
+    this.students = obj.students
   }
 }
 
@@ -214,6 +238,9 @@ Subject.prototype.subjectHTML = function (){
 Subject.prototype.withAssignmentsHTML = function (){
   console.log("in subject with assignment prototype")
   let subjectId = this.id
+  let studentCollection = this.students.map(s=>{
+    return(`<p> ${s.name} </p>`)
+  }).join("")
   let collection = this.assignments.map(a => {
     return (`
       <p>
@@ -226,6 +253,7 @@ Subject.prototype.withAssignmentsHTML = function (){
       <h3>${this.name}</h3>
 			<p>${this.description}</p>
 			<p>${collection}</p>
+      <p>${studentCollection}</p>
     </div>
   `)
 }
