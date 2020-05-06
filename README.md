@@ -1,4 +1,4 @@
-School Grades project
+My School Grades project
 This app allows teachers to manage the students and subjects that they teach.
 This app allows students to see their respective assignments and mark them as done.
 
