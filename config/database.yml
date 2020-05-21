@@ -38,4 +38,4 @@ test:
 
 production:
   <<: *default
-  database: grades_production
+  database: <%= ENV['DATABASE_URL'] %>
