@@ -6,6 +6,8 @@ class SubjectsController < ApplicationController
     if User.where(id: params[:user_id]).exists?
       @user = User.find(params[:user_id])
       @subjects = Subject.all.where(user_id: @user.id)
+      byebug
+      
       respond_to do |f|
         f.html {render :index}
         f.json {render json: @subjects}
