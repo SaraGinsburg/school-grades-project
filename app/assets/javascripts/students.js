@@ -22,16 +22,16 @@ function listenForClick() {
 function listenForAssignmentDetailsClick() {
   $('.assignment-data').on('click', function(event) {
     event.preventDefault()
-    console.log("in listenForAssignmentDetailsClick")
+    // console.log("in listenForAssignmentDetailsClick")
     getAssignment()
   })
 }
 
 function getNewAssignmentForm() {
-  console.log("in GetNewAssignmentForm")
+  // console.log("in GetNewAssignmentForm")
   s = event.target.getAttribute('id')
-  let newAssignmentForm = Assignment.newAssignmentForm()
-  $(`#${s}`).replaceWith(newAssignmentForm)
+  let newAssignForm = Assignment.newAssignmentForm()
+  $(`#${s}`).replaceWith(newAssignForm)
 
   $('#new_assignment_form').on("submit", function(e){
     e.preventDefault()
